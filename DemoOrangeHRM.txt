@@ -1,0 +1,52 @@
+package org.TestNG;
+
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class DemoOrangeHRM extends LibGlobel {
+	static DemoOrangeHRM lib = new DemoOrangeHRM();
+	@BeforeClass
+	public void setUp() {
+		lib.browserConfigChrome();
+
+	}
+	@Test(priority=1)
+	public void testGetUrl() {
+		lib.openUrl("https://opensource-demo.orangehrmlive.com/");
+		String actualURL = lib.getCurrentURL();
+		String expectedURl="https://opensource-demo.orangehrmlive.com/";
+		Assert.assertEquals(actualURL, expectedURl);
+
+	}
+	@Test(priority=2)
+	public void testMaximaize() {
+		lib.maximizeWindow();
+	}
+	@Test(priority=3)
+	public void testLogin() {
+		WebElement username = lib.byNameFindElement("txtUsername");
+		lib.inputText(username, "Admin");
+		WebElement password = lib.byNameFindElement("txtPassword");
+		lib.inputText(password, "admin123");
+		WebElement loginBtn = lib.byNameFindElement("Submit");
+		lib.btnClick(loginBtn);
+		String actualTitle = lib.getTitle();
+		String expectedTitle = "OrangeHRM";
+		Assert.assertEquals(actualTitle, expectedTitle);
+	}
+	@Test(priority=4)
+	public void testLogout() throws InterruptedException {
+		WebElement logoutLink = lib.byIDFindElement("welcome");
+		lib.btnClick(logoutLink);
+		Thread.sleep(2000);
+		WebElement logoutBtn = lib.byXpathFindElement("//a[text()='Logout']");
+		lib.btnClick(logoutBtn);
+	}
+	@AfterClass
+	public void closeApplication() {
+		lib.closeApp();
+	}
+}
