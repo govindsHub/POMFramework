@@ -45,6 +45,14 @@ public class DemoOrangeHRM extends LibGlobel {
 		WebElement logoutBtn = lib.byXpathFindElement("//a[text()='Logout']");
 		lib.btnClick(logoutBtn);
 	}
+	@Test(priority=5)
+	public void testLogout() {
+	TakesScreenshot tk = (TakesScreenShot)driver;
+	File src = tk.TakesScreenshotAs(OutputType.File);
+	File dec = new File("");
+	FileUtil(file.CopyFile(src,dec);
+		
+	}
 	@AfterClass
 	public void closeApplication() {
 		lib.closeApp();
