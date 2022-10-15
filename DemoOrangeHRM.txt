@@ -53,7 +53,18 @@ public class DemoOrangeHRM extends LibGlobel {
 	FileUtil(file.CopyFile(src,dec);
 		
 	}
-	@AfterClass
+	@Test(priority=6)
+	public void windowHandler(){
+	String parentWin=driver.getWindowHandler();
+	driver.findElement(By.xpath("").click();
+	set<String> childWin=driver.getWindowHandlers();
+	for(String id : childWin){
+	if(!parentWin.equalsIgnoreCase(id)){
+	driver.switch().window(id);
+	String text = driver.getTitle();
+	}
+{
+@AfterClass
 	public void closeApplication() {
 		lib.closeApp();
 	}
